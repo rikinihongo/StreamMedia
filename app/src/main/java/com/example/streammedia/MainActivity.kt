@@ -1,15 +1,11 @@
 package com.example.streammedia
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PictureInPictureParams
 import android.content.ComponentName
-import android.net.Uri
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,40 +19,41 @@ import androidx.media3.ui.PlayerView
 import com.google.common.util.concurrent.MoreExecutors
 import androidx.core.net.toUri
 import androidx.media3.common.C
-import androidx.media3.common.Tracks
-import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import androidx.media3.ui.TrackSelectionDialogBuilder
+import com.example.streammedia.databinding.ActivityMainBinding
+import com.example.streammedia.service.VideoItem
+import com.example.streammedia.service.VideoPlaybackService
 
 @UnstableApi
 class MainActivity : AppCompatActivity() {
     private var playerView: PlayerView? = null
     private var controller: MediaController? = null
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
         //createNotificationChannel()
-        initializePlayer()
+        //initializePlayer()
+        setClicks()
     }
 
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                "media3_channel",
-                "Media Playback",
-                NotificationManager.IMPORTANCE_LOW
-            ).apply {
-                description = "Thông báo phát media nền"
-            }
-            val manager = getSystemService(NotificationManager::class.java)
-            manager.createNotificationChannel(channel)
+    private fun setClicks() {
+        binding.btnGoDetail.setOnClickListener {
+            navigateToDetailActivity()
         }
+    }
+
+    private fun navigateToDetailActivity() {
+         val intent = Intent(this, DetailActivity::class.java)
+         startActivity(intent)
     }
 
     private fun initializePlayer() {

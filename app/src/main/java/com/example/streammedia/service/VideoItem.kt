@@ -1,4 +1,4 @@
-package com.example.streammedia
+package com.example.streammedia.service
 
 
 /**

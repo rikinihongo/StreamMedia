@@ -17,10 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StreamMedia">
         <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:supportsPictureInPicture="true"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
-            android:exported="true">
+            android:exported="true"
+            android:supportsPictureInPicture="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,23 +32,21 @@
         </activity>
 
         <service
-            android:name=".VideoPlaybackService2"
-            android:foregroundServiceType="mediaPlayback"
-            android:exported="true">
+            android:name=".service.VideoPlaybackService2"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService" />
             </intent-filter>
         </service>
-
         <service
-            android:name=".VideoPlaybackService"
-            android:foregroundServiceType="mediaPlayback"
-            android:exported="true">
+            android:name=".service.VideoPlaybackService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

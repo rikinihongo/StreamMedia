@@ -1,4 +1,4 @@
-package com.example.streammedia
+package com.example.streammedia.service
 
 import android.app.Notification
 import android.app.PendingIntent
@@ -9,6 +9,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import androidx.media3.ui.PlayerNotificationManager
+import com.example.streammedia.MainActivity
 
 @UnstableApi
 class VideoPlaybackService2 : MediaSessionService() {

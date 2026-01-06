@@ -1,4 +1,4 @@
-package com.example.streammedia
+package com.example.streammedia.service
 
 import android.app.PendingIntent
 import android.content.Intent
@@ -12,10 +12,10 @@ import androidx.media3.common.Player
 import androidx.media3.common.Tracks
 import androidx.media3.common.VideoSize
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import com.example.streammedia.MainActivity
 
 @OptIn(UnstableApi::class)
 class VideoPlaybackService : MediaSessionService() {
